@@ -1,14 +1,12 @@
 import os
-import boto3
-from tensorflow.saved_model import load
-# import pretty_midi
-# from basic_pitch.inference import predict
-# from basic_pitch import ICASSP_2022_MODEL_PATH
+from tensorflow.saved_model import load as tf_load
+from basic_pitch.inference import predict as basic_pitch_predict
+from basic_pitch import ICASSP_2022_MODEL_PATH
 
-# try:
-#     basic_pitch_model = tf.saved_model.load(str(ICASSP_2022_MODEL_PATH))
-# except Exception as e:
-#     print( {"statusCode": "Error", "body": str(e)} )
+try:
+    basic_pitch_model = tf_load(str(ICASSP_2022_MODEL_PATH))
+except Exception as e:
+    print( {"statusCode": "Error", "body": str(e)} )
 
 
 def clean_up_tmp(event):
@@ -24,6 +22,7 @@ def handler(event, context):
     Top-level function which handles events that come in from the front-end
     """
     try:
+
         # Initialise Amazon Webservices S3 Client
         
         # s3_client = boto3.client('s3', region_name='eu-north-1')
@@ -33,12 +32,12 @@ def handler(event, context):
         # file_path = '/tmp/'+event['file_id']
         
         # # Use the predict function to get model output, MIDI data, and note events
-        # _, midi_data, note_events = predict(
+        # _, midi_data, note_events = basic_pitch_predict(
         #     file_path,
         #     basic_pitch_model,
         # )
         
-        # Save the MIDI file
+        # # Save the MIDI file
         # midi_file_name = f"{file_path.split('/')[-1].split('.')[0]}.midi"
         # midi_data.write(midi_file_name)
 
