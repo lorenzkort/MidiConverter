@@ -1,12 +1,12 @@
 import os
-from tensorflow.saved_model import load as tf_load
-from basic_pitch.inference import predict as basic_pitch_predict
-from basic_pitch import ICASSP_2022_MODEL_PATH
+# from tensorflow.saved_model import load as tf_load
+# from basic_pitch.inference import predict as basic_pitch_predict
+# from basic_pitch import ICASSP_2022_MODEL_PATH
 
-try:
-    basic_pitch_model = tf_load(str(ICASSP_2022_MODEL_PATH))
-except Exception as e:
-    print( {"statusCode": "Error", "body": str(e)} )
+# try:
+#     basic_pitch_model = tf_load(str(ICASSP_2022_MODEL_PATH))
+# except Exception as e:
+#     print( {"statusCode": "Error", "body": str(e)} )
 
 
 def clean_up_tmp(event):
